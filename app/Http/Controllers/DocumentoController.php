@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Documento;
+use Barryvdh\DomPDF\PDF as DomPDF;
+use Illuminate\Http\Request;
+
+class DocumentoController extends Controller
+{
+  public function list(Request $request)
+  {
+    $dtInicio = $request->dtInicio;
+    if ( !$request->dtFim ){
+      $dtFim = date("Y-m-d");
+    } else {
+      $dtFim = $request->dtFim;
+    }
+    $docs =  (new Documento())->list($dtInicio, $dtFim);
+    
+    return view('documentos.list', compact('docs'));
+  }
+
+  public function show(Request $request)
+  {
+    $documento =  (new Documento())->findById($request->id);
+    $documento = $documento[0];
+    $pdf = $this->pdf($documento);
+
+    return view('documentos.show', compact('documento', 'pdf'));
+  }
+
+  public function pdf($data)
+  {
+    $pdf = DomPDF::loadView('documento', $data);
+    return $pdf->stream('documento.pdf');
+  }
+}
