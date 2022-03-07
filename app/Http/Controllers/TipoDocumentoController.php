@@ -10,6 +10,6 @@ class TipoDocumentoController extends Controller
   public function index(Request $request)
   {
     $tipoDocumentos = TipoDocumento::all();
-    return view('tipoDocumentos', compact('tipoDocumentos'));
+    return view('home', compact('tipoDocumentos'));
   }
 }

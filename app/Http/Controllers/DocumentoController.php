@@ -16,7 +16,14 @@ class DocumentoController extends Controller
     } else {
       $dtFim = $request->dtFim;
     }
-    $docs =  (new Documento())->list($dtInicio, $dtFim);
+    
+    $data = [
+      'tipoDocumento' => $request->tipoDocumento,
+      'dtInicio' => $dtInicio,
+      'dtFim' => $dtFim,
+    ];
+    
+    $docs =  (new Documento())->list($data);
     
     return view('documentos.list', compact('docs'));
   }
@@ -28,11 +35,5 @@ class DocumentoController extends Controller
     $pdf = $this->pdf($documento);
 
     return view('documentos.show', compact('documento', 'pdf'));
-  }
-
-  public function pdf($data)
-  {
-    $pdf = DomPDF::loadView('documento', $data);
-    return $pdf->stream('documento.pdf');
   }
 }

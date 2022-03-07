@@ -15,12 +15,12 @@ use App\Http\Controllers\DocumentoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('home');
 });
-
-Route::get('/tipos-documentos', [TipoDocumentoController::class, 'index']);
+*/
+Route::get('/', [TipoDocumentoController::class, 'index']);
 Route::get('/documentos/list', [DocumentoController::class, 'list'])->name('documentos.list');
 Route::get('/documentos/show/{id}', [DocumentoController::class, 'show'])->name('documentos.show');
 Route::get('/pagamentos/show', [PagamentosController::class, 'show'])->name('pagamentos.show');

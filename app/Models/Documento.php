@@ -10,16 +10,21 @@ class Documento extends Model
 {
     use HasFactory;
 
-    public function list($dtInicio, $dtFim)
+    public function list($data)
     {
-      $inicio = date( "Y-m-d", strtotime($dtInicio) );
-      $fim = date( "Y-m-d", strtotime($dtFim) );
+      $inicio = date( "Y-m-d", strtotime($data['dtInicio']) );
+      $fim = date( "Y-m-d", strtotime($data['dtFim']) );
 
-      return DB::table('documento')
-      ->select('documento.iddocumento', 'documento.nu_documento', 'documento.nu_documento_privado', 'documento.dsc_ementa', 'documento.dsc_conteudo', 'documento.dt_hr_publicacao')
-      ->where('documento.dt_hr_publicacao', '>=', $inicio)
-      ->where('documento.dt_hr_publicacao', '<=', $fim)
-      ->paginate(10);
+      $query = DB::table('documento')
+                ->select('documento.iddocumento', 'documento.nu_documento', 'documento.nu_documento_privado', 'documento.dsc_ementa', 'documento.dsc_conteudo', 'documento.dt_hr_publicacao')
+                ->where('documento.dt_hr_publicacao', '>=', $inicio)
+                ->where('documento.dt_hr_publicacao', '<=', $fim);
+      
+      if ( $data['tipoDocumento'] ) {
+        $query->where('documento.tipo_documento_id', '=', $data['tipoDocumento']);
+      }
+      
+      return $query->paginate(10);
     }
 
     public function findById($id)

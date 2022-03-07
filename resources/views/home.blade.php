@@ -17,6 +17,18 @@
         
         <form action="{{ route('documentos.list') }}" method="GET" style="margin: 1.2em">
           {{ csrf_field() }}
+          <div class="row" style="margin-bottom: 1.2em">
+            <div class="col">
+              <label for="tipoDocumento">Tipo de Documento</label>
+              <select name="tipoDocumento" id="tipoDocumento">
+                @foreach ($tipoDocumentos as $item)
+                <option value="{{$item->idtipo_documento}}">
+                  {{$item->dsc_tipo_documento}}
+                </option>
+                @endforeach
+              </select>
+            </div>
+          </div>
           <div class="row align-items-end">
             <div class="col">
               <label for="dtInicio" class="form-label">Data Inicial</label>
