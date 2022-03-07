@@ -21,6 +21,7 @@ class DocumentoController extends Controller
       'tipoDocumento' => $request->tipoDocumento,
       'dtInicio' => $dtInicio,
       'dtFim' => $dtFim,
+      'unidade' => $request->unidade
     ];
     
     $docs =  (new Documento())->list($data);

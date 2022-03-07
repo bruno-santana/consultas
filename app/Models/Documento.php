@@ -23,8 +23,12 @@ class Documento extends Model
       if ( $data['tipoDocumento'] ) {
         $query->where('documento.tipo_documento_id', '=', $data['tipoDocumento']);
       }
+
+      if ( $data['unidade'] ) {
+        $query->where('documento.unidade_id', '=', $data['unidade']);
+      }
       
-      return $query->paginate(10);
+      return $query->paginate(20)->appends(request()->query());
     }
 
     public function findById($id)

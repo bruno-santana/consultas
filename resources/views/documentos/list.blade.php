@@ -39,7 +39,7 @@
       </tbody>
       </table>
       <div class="d-flex justify-content-center">
-        {{ $docs->links() }}
+        {{ $docs->appends(request()->query())->links() }}
       </div>
     </div>
   </div>

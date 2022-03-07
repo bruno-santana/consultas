@@ -22,8 +22,18 @@
               <label for="tipoDocumento">Tipo de Documento</label>
               <select name="tipoDocumento" id="tipoDocumento">
                 @foreach ($tipoDocumentos as $item)
-                <option value="{{$item->idtipo_documento}}">
-                  {{$item->dsc_tipo_documento}}
+                <option value="{{ $item->idtipo_documento }}">
+                  {{ $item->dsc_tipo_documento }}
+                </option>
+                @endforeach
+              </select>
+            </div>
+            <div class="col">
+              <label for="unidade">Emitido por:</label>
+              <select name="unidade" id="unidade">
+                @foreach ($unidades as $item)
+                <option value="{{ $item->idunidade }}">
+                  {{ $item->nm_unidade }}
                 </option>
                 @endforeach
               </select>

@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TipoDocumentoController;
-use App\Http\Controllers\PagamentosController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DocumentoController;
+use App\Http\Controllers\PagamentosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('home');
 });
 */
-Route::get('/', [TipoDocumentoController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/documentos/list', [DocumentoController::class, 'list'])->name('documentos.list');
 Route::get('/documentos/show/{id}', [DocumentoController::class, 'show'])->name('documentos.show');
 Route::get('/pagamentos/show', [PagamentosController::class, 'show'])->name('pagamentos.show');

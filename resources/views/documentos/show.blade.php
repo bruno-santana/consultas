@@ -37,7 +37,7 @@
 
       {!! $documento->dsc_conteudo !!}
 
-      <div style="margin-top: 64px" class="d-flex justify-content-center">
+      <div style="margin-top: 64px;page-break-before: always;" class="d-flex justify-content-center">
         <div style="margin: 32px">
           <img width="200" height="100" src={{ url('static/images/9475.png') }} alt="assinatura grao mestre" />
           <p class="ft14">
