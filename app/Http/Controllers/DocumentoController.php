@@ -32,8 +32,21 @@ class DocumentoController extends Controller
   {
     $documento =  (new Documento())->findById($request->id);
     $documento = $documento[0];
-    $pdf = $this->pdf($documento);
+    
+    return view('documentos.show', compact('documento'));
+  }
 
-    return view('documentos.show', compact('documento', 'pdf'));
+  public function pdf($data)
+  {
+    $dsc_conteudo = strip_tags($data->dsc_conteudo);
+
+    $pdf = DomPDF::loadView('documento', [
+      'nu_documento' => $data->nu_documento,
+      'nu_documento_privado' => $data->nu_documento_privado,
+      'dsc_ementa' => $data->dsc_ementa,
+      'dsc_conteudo' => $dsc_conteudo,
+      'dt_hr_publicacao' => $data->dt_hr_publicacao
+    ]);
+    return $pdf->stream('documento.pdf');
   }
 }
