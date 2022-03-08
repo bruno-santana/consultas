@@ -12,6 +12,9 @@
     Listagem de documentos
   </h2>
   <div class="col-md-12">
+    <div class="d-flex justify-content-center">
+      {{ $docs->appends(request()->query())->links() }}
+    </div>
     <div class="table-responsive">
       <table class="table table-striped table-fixed mtop16">
         <thead>
@@ -26,7 +29,7 @@
         @foreach($docs as $item)
           <tr>
             <td scope="row" class="col-2">
-              {{ $item->nu_documento_privado }}/{{ $item->nu_documento }}
+              {{ $item->nu_documento }}/{{ $item->nu_documento_privado }}
             </td>
             <td class="col-7">
               {{ $item->dsc_ementa }}
