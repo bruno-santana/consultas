@@ -27,6 +27,7 @@ class Documento extends Model
       if ( $data['unidade'] ) {
         $query->where('documento.unidade_id', '=', $data['unidade']);
       }
+      $query->orderBy('documento.dt_hr_publicacao', 'asc');
       
       return $query->paginate(20)->appends(request()->query());
     }
