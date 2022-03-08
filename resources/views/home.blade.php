@@ -13,14 +13,13 @@
     <div class="card shadow-lg p-2 mb-4 bg-body rounded" style="margin: 0 3em; border: 1px solid rgba(0,0,0,0.2);">
       <div class="container">
         <h3>Documentos</h3>
-        <p>Informe as datas de início e fim de sua pesquisa:</p>
         
         <form action="{{ route('documentos.list') }}" method="GET" style="margin: 1.2em">
           {{ csrf_field() }}
-          <div class="row" style="margin-bottom: 1.2em">
-            <div class="col">
+          <div class="row">
+            <div class="col" style="margin-bottom: 1.2em">
               <label for="tipoDocumento">Tipo de Documento</label>
-              <select name="tipoDocumento" id="tipoDocumento">
+              <select class="form-control" name="tipoDocumento" id="tipoDocumento">
                 @foreach ($tipoDocumentos as $item)
                 <option value="{{ $item->idtipo_documento }}">
                   {{ $item->dsc_tipo_documento }}
@@ -28,9 +27,9 @@
                 @endforeach
               </select>
             </div>
-            <div class="col">
+            <div class="col" style="margin-bottom: 1.2em">
               <label for="unidade">Emitido por:</label>
-              <select name="unidade" id="unidade">
+              <select class="form-control" name="unidade" id="unidade">
                 @foreach ($unidades as $item)
                 <option value="{{ $item->idunidade }}">
                   {{ $item->nm_unidade }}
@@ -40,6 +39,7 @@
             </div>
           </div>
           <div class="row align-items-end">
+            <p>Informe as datas de início e fim de sua pesquisa:</p>
             <div class="col">
               <label for="dtInicio" class="form-label">Data Inicial</label>
               <input type="date" class="form-control" id="dtInicio" name="dtInicio">
