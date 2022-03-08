@@ -3,6 +3,11 @@
 @section('titulo', 'Último pagamento')
 
 @section('conteudo')
+  <div class="bottom-0 end-0" style="position: fixed; margin: 1%; z-index: 1000;">
+    <a href="/">
+      <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+    </a>
+  </div>
   <h2 class="d-flex justify-content-center" style="margin-top: 18px;">
     Último Pagamento
   </h2>
