@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\PagamentosController;
+use App\Http\Controllers\BeneficiariosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,5 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/documentos/list', [DocumentoController::class, 'list'])->name('documentos.list');
 Route::get('/documentos/show/{id}', [DocumentoController::class, 'show'])->name('documentos.show');
 Route::get('/pagamentos/show', [PagamentosController::class, 'show'])->name('pagamentos.show');
+Route::get('/beneficiarios/show', [BeneficiariosController::class, 'show'])->name('beneficiarios.show');
 

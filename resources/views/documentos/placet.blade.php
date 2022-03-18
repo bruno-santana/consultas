@@ -26,17 +26,26 @@
     <!-- <img width="893" height="1240" src={{ url('static/images/target001.png') }} alt="background image" /> -->
 
     <p style="position:absolute;top:210px;left:125px;white-space:nowrap">
-       ATO Nº {{ $documento->nu_documento }} / {{ $documento->nu_documento_privado }}, GESTÃO 2019/2022<br>FORTALEZA, {{ date('d/m/Y - H:m', strtotime($documento->dt_hr_publicacao)) }} - E.·.V.·.
+       PLACET Nº {{ $documento['nu_documento'] }} / {{ $documento['nu_documento_privado'] }}, GESTÃO 2019/2022<br>FORTALEZA, {{ date('d/m/Y - H:m', strtotime($documento['dt_hr_publicacao'] )) }} - E.·.V.·.
     </p>
 
     <div style="position:absolute;top:210px;left:530px;right:40px;text-align:justify;">
-      {{ $documento->dsc_ementa }}
+      {{ $documento['dsc_ementa'] }}
     </div>
 
     <div style="position:absolute;top:400px;left:132px;right:40px;text-align:justify;">
 
-      {!! $documento->dsc_conteudo !!}
+      <p class="d-flex justify-content-center">
+        PLACET Nº {{ $documento['nu_documento'] }} / {{ $documento['nu_documento_privado'] }}
+      </p>
 
+      <p style="margin-top: 64px;" class="d-flex justify-content-center">
+        O SERENÍSSIMO GRÃO-MESTRE DA MUI RESPEITÁVEL GRANDE LOJA MAÇÔNICA DO ESTADO DO CEARÁ, AUTORIZA PELO PRESENTE PLACET, A {{ $documento['nm_unidade'] }} DESTA JURISDIÇÃO, A PROMOVER A {{ $documento['cerimonia'] }} DO PROFANO {{ $documento['nm_pessoa'] }}, CUJO PROCESSO CORREU SEUS TRAMITES LEGAIS, SENDO REGULARMENTE APROVADO.
+      <br/>
+      <p style="margin-top: 64px;" class="d-flex justify-content-center">
+        ORIENTE DE FORTALEZA, {{ date('d/m/Y - H:m', strtotime($documento['dt_hr_publicacao'] )) }}, E.·.V.·.
+      </p>
+      <br/>
       <div style="margin-top: 64px;" class="d-flex justify-content-center">
         <div style="margin: 32px">
           <img width="200" height="100" src={{ url('static/images/9475.png') }} alt="assinatura grao mestre" />

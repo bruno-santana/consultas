@@ -90,6 +90,11 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
         ],
+        'sqlite-beneficiarios' => [
+            'driver'   => 'sqlite',
+            'database' => __DIR__.'/../database/beneficiarios.sqlite',
+            'prefix'   => '',
+        ]
 
     ],
 

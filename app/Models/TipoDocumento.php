@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class TipoDocumento extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $table = 'tipo_documento';
-    protected $primaryKey = 'idtipo_documento';
-    protected $connection = 'pgsql';
+  protected $table = 'tipo_documento';
+  protected $primaryKey = 'idtipo_documento';
+  protected $connection = 'pgsql';
 }
