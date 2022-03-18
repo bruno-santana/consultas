@@ -31,10 +31,15 @@ class DocumentoController extends Controller
 
   public function show(Request $request)
   {
+    $placets = [19, 32, 33];
     $documento =  (new Documento())->findById($request->id);
 
-    $nm_pessoa = explode('EM FAVOR DE', $documento[0]->dsc_ementa);
-    $nm_pessoa = $nm_pessoa[1];
+    if( in_array($documento[0]->idtipo_documento, $placets)) {
+      $nm_pessoa = explode('EM FAVOR DE', $documento[0]->dsc_ementa);
+      $nm_pessoa = $nm_pessoa[1];
+    } else {
+      $nm_pessoa = null;
+    }
 
     $documento = [
       'nu_documento' => $documento[0]->nu_documento,
@@ -42,11 +47,20 @@ class DocumentoController extends Controller
       'nu_documento_privado' => $documento[0]->nu_documento_privado,
       'dt_hr_publicacao' => $documento[0]->dt_hr_publicacao,
       'dsc_ementa' => $documento[0]->dsc_ementa,
+      'dsc_conteudo' => $documento[0]->dsc_conteudo,
       'nm_unidade' => $documento[0]->nm_unidade,
       'nm_pessoa' => $nm_pessoa
     ];
 
-    if($documento['idtipo_documento'] != 1) {
+    if(strtotime($documento['dt_hr_publicacao']) < strtotime('01/06/2019')){
+      $documento['gestao'] = '2016-2019';
+      $documento['assinaturas'] = view('layout.assinaturas2016');
+    } else {
+      $documento['gestao'] = '2019-2022';
+      $documento['assinaturas'] = view('layout.assinaturas2019');
+    }
+
+    if(in_array($documento['idtipo_documento'], $placets)) {
       switch ($documento['idtipo_documento']) {
         case '33':
           $documento['cerimonia'] = 'ELEVAÇÃO';
@@ -55,9 +69,8 @@ class DocumentoController extends Controller
           $documento['cerimonia'] = 'EXALTAÇÃO';
           break;
         default:
-        $documento['cerimonia'] = 'INICIAÇÃO';
+          $documento['cerimonia'] = 'INICIAÇÃO';
       }
-
       return view('documentos.placet', compact('documento'));
     } else {
       return view('documentos.show', compact('documento'));
