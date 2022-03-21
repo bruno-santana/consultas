@@ -34,7 +34,6 @@
     </div>
 
     <div style="position:absolute;top:400px;left:132px;right:40px;text-align:justify;">
-
       {!! $documento['dsc_conteudo'] !!}
 
       {!! $documento['assinaturas'] !!}

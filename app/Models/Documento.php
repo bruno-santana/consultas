@@ -43,6 +43,6 @@ class Documento extends Model
     ->join('unidade', 'unidade.idunidade', '=', 'obreiro.unidade_id')
     ->select('documento.iddocumento', 'documento.nu_documento', 'documento.nu_documento_privado', 'documento.dsc_ementa', 'documento.dsc_conteudo', 'documento.dt_hr_publicacao', 'documento.unidade_id', 'tipo_documento.idtipo_documento', 'unidade.nm_unidade')
     ->where('documento.iddocumento', '=', $id)
-    ->get();
+    ->first();
   }
 }

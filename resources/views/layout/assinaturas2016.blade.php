@@ -1,7 +1,7 @@
 <div style="margin-top: 64px;" class="d-flex justify-content-center">
   <div style="margin: 32px">
     <img width="200" height="100" src={{ url('static/images/1189.jpg') }} alt="assinatura grao mestre" />
-    <p class="ft14">
+    <p class="ft14">      
       <i><b>Silvio de Paiva Ribeiro</b></i>
     </p>
     <p class="ft12">
