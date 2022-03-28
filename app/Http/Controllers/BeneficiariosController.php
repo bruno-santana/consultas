@@ -10,20 +10,17 @@ class BeneficiariosController extends Controller
 {
   public function show(Request $request)
   {
-    $obreiro =  (new Obreiro())->findByCim($request->cim);
-    $obreiro = [
-      'loja' => $obreiro[0]->nm_unidade,
-      'nome' => $obreiro[0]->nm_pessoa,
-      'cadastro' => $obreiro[0]->nr_cadastro
-    ];
-    $beneficiarios = $this->beneficiariosPorCim($request->cim);
-    
-    return view('beneficiarios.show', compact('obreiro', 'beneficiarios'));
+    $data = $this->beneficiariosPorCim($request->cim);
+    return view('beneficiarios.show', compact('data'));
   }
   
   protected function beneficiariosPorCim($cim)
   {
-    dd((new Beneficiario())->findByCim($cim));
-    return (new Beneficiario())->findByCim($cim);
+    $signatario = (new Beneficiario())->buscarSignatarioPorCim($cim);
+    $beneficiarios = (new Beneficiario())->buscarBeneficiarioPorCim($signatario->signatario_id);
+    return [
+      'signatario' => $signatario,
+      'beneficiarios' => $beneficiarios
+    ];
   }
 }

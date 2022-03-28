@@ -15,41 +15,46 @@
   <div class="row">
     <div class="container">
       <div class="d-flex">
-        <div class="p-2">LOJA:</div>
-        <div class="p-2 flex-grow-1">{{ $obreiro['loja'] }}</div>
+        <div class="p-2">CADASTRO:</div>
+        <div class="p-2 flex-grow-1">
+          {{ $data['signatario']->signatario_cadastro }}
+        </div>
       </div>
       <div class="d-flex">
         <div class="p-2">OBREIRO:</div>
-        <div class="p-2 flex-grow-1">{{ $obreiro['nome'] }}</div>
+        <div class="p-2 flex-grow-1">
+          {{ Str::upper($data['signatario']->signatario_nome) }}
+        </div>
       </div>
       <div class="d-flex">
-        <div class="p-2">CADASTRO:</div>
-        <div class="p-2 flex-grow-1">{{ $obreiro['cadastro'] }}</div>
+        <div class="p-2">PROTOCOLO:</div>
+        <div class="p-2 flex-grow-1">
+          {{ $data['signatario']->signatario_protocolo }}
+        </div>
+      </div>
+      <div class="d-flex">
+        <div class="p-2">DATA DE REGISTRO:</div>
+        <div class="p-2 flex-grow-1">
+          {{ date('d/m/Y', strtotime($data['signatario']->signatario_data )) }}
+        </div>
       </div>
       <div class="table-responsive">
         <table class="table table-striped table-fixed mtop16">
           <thead>
             <tr>
-              <th scope="col" class="col-2">Beneficiário - %</th>
-              <th scope="col" class="col-7">Parentesco</th>
-              <th scope="col" class="col-2">Data de registro</th>
-              <th scope="col" class="col-1">Protocolo</th>
+              <th scope="col" class="col-9">Beneficiário</th>
+              <th scope="col" class="col-3">Parentesco</th>
             </tr>
           </thead>
           <tbody>
-            @foreach($beneficiarios as $item)
+            @foreach($data['beneficiarios'] as $item)
               <tr>
-                <td scope="row" class="col-2">
-                  {{ $item->beneficiario }}
+                <td scope="row" class="col-9">
+                  {{ $item->beneficiario_nome }}
                 </td>
-                <td class="col-7">
-                  {{ $item->parentesco }}
+                <td class="col-3">
+                  {{ $item->beneficiario_parentesco }}
                 </td>
-                <td class="col-2">
-                  {{ date('d/m/Y - H:m', strtotime($item->dt_registro)) }}
-                </td>
-                <td class="col-1">
-                  {{ $item->protocolo }}
                 </td>
               </tr>
             @endforeach

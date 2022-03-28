@@ -92,7 +92,7 @@ return [
         ],
         'sqlite-beneficiarios' => [
             'driver'   => 'sqlite',
-            'database' => __DIR__.'/../database/beneficiarios.sqlite',
+            'database' => database_path('beneficiarios.sqlite'),
             'prefix'   => '',
         ]
 

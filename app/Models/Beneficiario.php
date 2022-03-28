@@ -9,12 +9,22 @@ use Illuminate\Support\Facades\DB;
 class Beneficiario extends Model
 {  
   use HasFactory;
-  protected $connection='sqlite-beneficiarios';
-  protected $table='beneficiarios';
 
-  public function findByCim($cim)
+  public function buscarSignatarioPorCim($cim)
   {
-    return DB::table('beneficiarios')
-           ->select('select * from beneficiarios where id = ?', [$cim]);
+    $connection = DB::connection('sqlite-beneficiarios');
+    return $connection->table('signatarios AS s')
+    ->select('s.id AS signatario_id', 's.cadastro AS signatario_cadastro', 's.nome AS signatario_nome', 's.protocolo AS signatario_protocolo', 's.data AS signatario_data')
+    ->where('s.cadastro', '=', $cim)
+    ->first();
+  }
+
+  public function buscarBeneficiarioPorCim($id)
+  {
+    $connection = DB::connection('sqlite-beneficiarios');
+    return $connection->table('beneficiarios AS b')
+    ->select('b.nome AS beneficiario_nome', 'b.parentesco AS beneficiario_parentesco')
+    ->where('b.signatario_id', '=', $id)
+    ->get();
   }
 }
